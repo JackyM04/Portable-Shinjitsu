@@ -1,6 +1,7 @@
 var audio = new Audio();
 audio.preload = true;
 var charvol = {
+    konan:["shinjitsu"],
     cbt: [
         "igiari",
         "objection",
@@ -217,7 +218,6 @@ function clearAudioCache() {
 
     console.log('音频缓存已清空');
 }
-
 if (device.ios()) {
     function requestOrientationPermission() {
         DeviceOrientationEvent.requestPermission()
@@ -226,7 +226,7 @@ if (device.ios()) {
                     window.addEventListener("devicemotion", dm);
                 }
             })
-            .catch(console.error);
+            .catch(alert("请允许陀螺仪权限"));
     }
     document
         .getElementById("btn1")
@@ -237,6 +237,7 @@ if (device.ios()) {
 
 function dm(event) {
     document.getElementById("sensok").innerHTML = "✅";
+    
     let acc = event.acceleration;
     accx = acc.x || 0;
     accy = acc.y || 0;
